@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: [self-hosted, github-runner]   # use the label you gave your runner
 
     steps:
       - name: Checkout code
@@ -29,3 +29,5 @@ jobs:
 
       - name: Build Docker image
         run: docker build -t github-actions-demo:latest .
+        env:
+          DOCKER_BUILDKIT: 1   # optional, faster builds
